@@ -1,0 +1,15 @@
+🥞 Revisiting Data Structures: Array-based Stack ADT
+
+After covering fundamental physical data structures like arrays and linked lists, we now move on to logical data structures. Logical structures are built on top of physical ones, with added rules and constraints that dictate how elements are stored and accessed. One of the most fundamental logical structures is the Stack, and in this post, we’ll revisit its array-based implementation.
+
+A stack follows the Last-In-First-Out (LIFO) principle, meaning the most recently added element is always the first one to be removed. A common analogy is a stack of plates: the last plate placed on top is the first one you pick up. In an array-based implementation, the stack uses an underlying array to store elements, a top pointer to keep track of the most recently inserted element, and a fixed size that determines its maximum capacity.
+
+When it comes to performance, stack operations are highly efficient. Pushing an element simply increments the top index and places the new value at that position. Similarly, popping an element only decrements the top pointer, effectively removing the last item. Both of these operations execute in constant time, O(1). Accessing or peeking at an element relative to the top is also a constant-time operation, since arrays allow direct indexing without traversal.
+
+From a space complexity perspective, an array-based stack requires O(n) memory for n elements. However, because arrays have a fixed size, there is a possibility of wasted memory if the stack is not fully utilized. Unlike a linked list–based stack, this approach does not require extra storage for pointers, making it lighter in memory but less flexible in terms of growth.
+
+Despite its simplicity, the stack plays a vital role in computer science. It is used in managing function calls through the call stack, enabling undo and redo operations in editors, and evaluating mathematical expressions such as converting infix notation to postfix or prefix, which computers can process more effectively.
+
+In conclusion, the array-based stack is a lightweight and efficient data structure that provides constant-time operations for insertion, deletion, and access. Its main trade-off lies in the fixed capacity of arrays, but its role in core system functionality makes it an indispensable concept for every programmer to master.
+
+#DataStructures #StackImplementation #ComputerScience

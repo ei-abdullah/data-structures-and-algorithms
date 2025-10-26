@@ -27,101 +27,105 @@ public:
     {
         delete[] array;
     }
-
-    // Get the element at a specific index
-    int Get(int index)
-    {
-        if (index < 0 || index >= size)
-        {
-            cout << "Invalid index!" << endl;
-            return -1; // Error code
-        }
-        return array[index];
-    }
-
-    // Insert an element at a specific index
-    void Insert(int index, int element)
-    {
-        if (index < 0 || index > size)
-        {
-            cout << "Invalid index!" << endl;
-            return;
-        }
-
-        if (size == capacity)
-        {
-            cout << "List is full. Cannot insert more elements." << endl;
-            return;
-        }
-
-        // Shift elements to the right to make space
-        for (int i = size; i > index; i--)
-        {
-            array[i] = array[i - 1];
-        }
-
-        array[index] = element;
-        size++;
-    }
-
-    // Append an element at the end of the list
-    void Append(int element)
-    {
-        if (size == capacity)
-        {
-            cout << "List is full. Cannot append more elements." << endl;
-            return;
-        }
-
-        array[size++] = element;
-    }
-
-    // Delete an element at a specific index
-    void Delete(int index)
-    {
-        if (index < 0 || index >= size)
-        {
-            cout << "Invalid index!" << endl;
-            return;
-        }
-
-        // Shift elements to the left to fill the gap
-        for (int i = index; i < size - 1; i++)
-        {
-            array[i] = array[i + 1];
-        }
-
-        size--;
-    }
-
-    // Display the elements of the list
-    void Display()
-    {
-        if (size == 0)
-        {
-            cout << "List is empty!" << endl;
-            return;
-        }
-
-        for (int i = 0; i < size; i++)
-        {
-            cout << array[i] << " ";
-        }
-        cout << endl;
-    }
-
-    // Get the current size of the list
-    int ListSize()
-    {
-        return size;
-    }
-
-    // Check if the list is empty
-    bool isEmpty()
-    {
-        return size == 0;
-    }
 };
+
+
+
+// Insert an element at a specific index
+void ArrayList::Insert(int index, int element)
+{
+    if (index < 0 || index > size)
+    {
+        cout << "Invalid index!" << endl;
+        return;
+    }
+
+    if (size == capacity)
+    {
+        cout << "List is full. Cannot insert more elements." << endl;
+        return;
+    }
+
+    // Shift elements to the right to make space
+    for (int i = size; i > index; i--)
+    {
+        array[i] = array[i - 1];
+    }
+
+    array[index] = element;
+    size++;
+}
+
+// Append an element at the end of the list
+void ArrayList::Append(int element)
+{
+    if (size == capacity)
+    {
+        cout << "List is full. Cannot append more elements." << endl;
+        return;
+    }
+
+    array[size++] = element;
+}
+
+// Delete an element at a specific index
+void ArrayList::Delete(int index)
+{
+    if (index < 0 || index >= size)
+    {
+        cout << "Invalid index!" << endl;
+        return;
+    }
+
+    // Shift elements to the left to fill the gap
+    for (int i = index; i < size - 1; i++)
+    {
+        array[i] = array[i + 1];
+    }
+
+    size--;
+}
+
+
+
+// Display the elements of the list
+void ArrayList::Display()
+{
+    if (size == 0)
+    {
+        cout << "List is empty!" << endl;
+        return;
+    }
+
+    for (int i = 0; i < size; i++)
+    {
+        cout << array[i] << " ";
+    }
+    cout << endl;
+}
+
+// Get the element at a specific index
+int ArrayList::Get(int index)
+{
+    if (index < 0 || index >= size)
+    {
+        cout << "Invalid index!" << endl;
+        return -1; // Error code
+    }
+    return array[index];
+}
+
+// Get the current size of the list
+int ArrayList::ListSize()
+{
+    return size;
+}
+
+// Check if the list is empty
+bool ArrayList::isEmpty()
+{
+    return size == 0;
+}
 
 int main()
 {

@@ -1,124 +1,84 @@
 
-import java.util.ArrayList;
-import java.util.Optional;
-
 public class LinkedList {
 
-    private static class Node {
+    private class Node {
 
         int data;
-        Node nextNode;
+        Node next;
+    }
 
-        Node(int data) {
-            this.data = data;
-            this.nextNode = null;
+    Node head;
+
+    void Insert(int index, int value) {
+        if (index < 0 || index >= ListCount()) {
+            return;
         }
+
+        Node newNode = new Node();
+        newNode.data = value;
+        newNode.next = null;
+
+        if (index == 0) {
+            newNode.next = null;
+            head = newNode;
+            return;
+        }
+
+        Node p = head;
+        for (int i = 0; i < index - 1; i++) {
+            p = p.next;
+        }
+        newNode.next = p.next;
+        p.next = newNode;
     }
 
-    private Node head;
-    private Node tail;
+    int FindNode(int value) {
+        Node p = head;
+        int index = 0;
 
-    public LinkedList() {
-        this.head = null;
-        this.tail = null;
+        while (p != null) {
+            if (p.data == value) {
+                return index;
+            }
+            p = p.next;
+            index++;
+        }
+
+        return -1;
     }
 
-    public int get(int index) {
-        if (index < 0 || index >= listCount()) {
+    int DeleteNode(int index) {
+        if (index < 0 || index >= ListCount()) {
             return -1;
         }
 
         Node p = head;
-
-        for (int i = 0; i < index; i++) {
-            p = p.nextNode;
-        }
-
-        return p.data;
-    }
-
-    public void insertHead(int val) {
-
-        Node newNode = new Node(val);
-
-        if (head == null && tail == null) {
-            head = newNode;
-            tail = newNode;
-        } else {
-            newNode.nextNode = head;
-            head = newNode;
-        }
-    }
-
-    public void insertTail(int val) {
-        Node newNode = new Node(val);
-
-        if (head == null && tail == null) {
-            head = newNode;
-            tail = newNode;
-        } else {
-            tail.nextNode = newNode;
-            tail = newNode;
-        }
-    }
-
-    public boolean remove(int index) {
-        if (index < 0 || index >= listCount()) {
-            return false;
-        }
+        Node q = null;
+        int value = 0;
 
         if (index == 0) {
-            head = head.nextNode;
-            if (head == null) {
-                tail = null;
-            }
-        } else {
-            Node p = head;
-            Node q = null;
-
-            for (int i = 0; i < index; i++) {
-                q = p;
-                p = p.nextNode;
-            }
-
-            q.nextNode = p.nextNode;
-
-            if (p.nextNode == null) {
-                tail = q;
-            }
+            q = head;
+            value = head.data;
+            head = head.next;
+            return value;
         }
 
-        return true;
+        for (int i = 0; i < index; i++) {
+            q = p;
+            p = p.next;
+        }
+
+        q.next = p.next;
+        value = p.data;
+        return value;
     }
 
-    public Optional<ArrayList<Integer>> getValues() {
-        ArrayList<Integer> listValues = new ArrayList<>();
-
-        Node p = head;
-
-        if (p == null) {
-            return Optional.empty();
-        }
-
-        while (p != null) {
-            listValues.add(p.data);
-            p = p.nextNode;
-        }
-
-        return Optional.of(listValues);
-    }
-
-    private int listCount() {
-        Node p = head;
+    int ListCount() {
         int count = 0;
-
-        if (p == null) {
-            return 0;
-        }
-
+        Node p = head;
         while (p != null) {
             count++;
-            p = p.nextNode;
+            p = p.next;
         }
 
         return count;

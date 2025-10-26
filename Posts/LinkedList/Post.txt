@@ -1,0 +1,15 @@
+🔗 Revisiting Data Structures: Linked List ADT
+
+After arrays, the next fundamental data structure is the Linked List. A linked list is essentially a collection of nodes, where each node contains data and a pointer (or reference) to the next node in the sequence.
+
+Because each node only knows about its own data and the pointer to the next node, insertion and deletion can be very efficient — but only if you already have a reference to the node where the operation needs to happen. In such cases, adjusting a couple of pointers is enough, which takes constant time, O(1). However, if you don’t know the location beforehand, you must traverse the list from the head until you reach the desired position, which makes the operation take linear time, O(n) in the worst case.
+
+Accessing elements is where linked lists lose out to arrays. With arrays, indices map directly to memory locations, so fetching an element is O(1). In a linked list, though, you can’t jump directly to the 5th or 50th node — you have to move step by step through the pointers. In the best case (if the element is at the head), access is O(1), but in the worst case it takes O(n).
+
+On the space side, both arrays and linked lists require O(n) memory for n elements. The difference is that each linked list node stores not just the data but also an extra pointer, which makes it more memory-intensive than arrays. This overhead is the trade-off you make for flexibility.
+
+At this point, you might think linked lists are slower, heavier, and costlier than arrays — so why use them? The answer lies in flexibility. With arrays, you must define a fixed size up front, and resizing them can be expensive. Linked lists, on the other hand, grow and shrink dynamically. You can keep adding or removing nodes without worrying about memory blocks being contiguous.
+
+In short: arrays excel at random access, while linked lists shine when frequent insertions and deletions are involved. Both have their place, and understanding these trade-offs is exactly what makes data structures powerful.
+
+#LinkedList #DataStructures #ComputerScience
