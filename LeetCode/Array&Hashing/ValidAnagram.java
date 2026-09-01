@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class ValidAnagram {
@@ -18,10 +19,31 @@ public class ValidAnagram {
         return sMap.equals(pMap);
 
         /*
-            Time:
-            Space:
+            Time: O(n) or O(s + p)
+            Space: O(n) or O(s + p)
          */
     }
+
+    public static Boolean isAnagramSort(String s, String p) {
+        if (s.length() != p.length()) {
+            return false;
+        }
+
+        char[] sChars = s.toCharArray();
+        char[] pChars = p.toCharArray();
+
+        Arrays.sort(sChars);
+        Arrays.sort(pChars);
+
+        return Arrays.equals(sChars, pChars);
+
+        /*
+        Time: O(n.logn)
+        Space: O(n)
+         */
+    }
+
+
 
     static void main() {
         String s = "anagram";
@@ -31,6 +53,9 @@ public class ValidAnagram {
         String l = "rat";
 
         System.out.println(isAnagram(s, p));
+        System.out.println(isAnagramSort(s, p));
+
         System.out.println(isAnagram(t, l));
+        System.out.println(isAnagramSort(t, l));
     }
 }
