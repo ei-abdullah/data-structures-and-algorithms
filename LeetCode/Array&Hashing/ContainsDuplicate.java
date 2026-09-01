@@ -1,26 +1,72 @@
-
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Set;
 
 public class ContainsDuplicate {
+    public ContainsDuplicate() {
+    }
 
-    private static Boolean containsDuplicate(int[] arr) {
-        Set<Integer> seen = new HashSet<>();
-
-        for (int arrElems : arr) {
-            if (seen.contains(arrElems)) {
-                return true;
-            } else {
-                seen.add(arrElems);
+    public static Boolean containsDuplicateBrute(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] == nums[j]) {
+                    return true;
+                }
             }
         }
 
         return false;
+
+        /*
+            Time: O(n^2)
+            Space: -
+         */
     }
 
-    public static void main(String[] args) {
-        int[] array = {1, 2, 3};
+    public static Boolean containsDuplicateSort(int[] nums) {
+        int[] sortedNums = Arrays
+                .stream(nums)
+                .sorted()
+                .toArray();
 
-        System.err.println(containsDuplicate(array));
+        for (int i = 0; i < sortedNums.length - 1; i++) {
+            if (sortedNums[i] == sortedNums[i + 1]) {
+                return true;
+            }
+        }
+
+        return false;
+
+        /*
+            Time: O(nlogn)
+            Space: O(1)
+         */
+    }
+
+    public static Boolean containsDuplicateHash(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+
+        for (int num : nums) {
+            if (set.contains(num)) {
+                return true;
+            } else {
+                set.add(num);
+            }
+        }
+
+        return false;
+
+        /*
+            Time: O(n)
+            Space: O(n)
+         */
+    }
+
+    static void main() {
+        int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
+
+        System.out.println(containsDuplicateBrute(nums));
+        System.out.println(containsDuplicateSort(nums));
+        System.out.println(containsDuplicateHash(nums));
     }
 }

@@ -10,7 +10,7 @@ public class PrefixSum {
         return arr;
     }
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         int[] array = {3, 7, 5, 21};
 
         array = calcPrefixSum(array);
