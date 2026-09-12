@@ -1,8 +1,14 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Stack;
 
 public class ValidParentheses {
 
-    public boolean isValid(String s) {
+    public boolean isValidOld(String s) {
+        if (s.length() % 2 != 0) {
+            return false;
+        }
+
         Stack<Character> stk = new Stack<>();
 
         for (char c : s.toCharArray()) {
@@ -36,8 +42,23 @@ public class ValidParentheses {
         return true;
     }
 
+    public boolean isValid(String s) {
+        if (s.length() % 2 != 0) return false;
+
+        Deque<Character> stk = new ArrayDeque<>();
+
+        for (char c: s.toCharArray()) {
+            if (c == '(') stk.push(')');
+            else if (c == '[') stk.push(']');
+            else if (c == '{') stk.push('}');
+            else if (stk.isEmpty() || stk.pop() != c) return false;
+        }
+
+        return stk.isEmpty();
+    }
+
     static void main() {
-        String s = "[{}";
+        String s = "[]{}";
         System.out.println(new ValidParentheses().isValid(s));
     }
 }
